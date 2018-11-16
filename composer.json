@@ -5,7 +5,7 @@
     "require": {
         "balawxd/basecamp3-php": "^1.0@dev"
     },
-    "license": "MIT License",
+    "license": "MIT",
     "autoload": {
         "psr-4": { "BasecampPhpLaravel\\": "src/" }
     },

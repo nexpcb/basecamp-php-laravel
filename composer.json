@@ -3,7 +3,7 @@
     "description": "Integrate with laravel for basecamp3-php package",
     "type": "library",
     "require": {
-        "balawxd/basecamp3-php": "^1.0@dev"
+        "nexpcb/basecamp3-php": "^1.0@dev"
     },
     "license": "MIT",
     "autoload": {

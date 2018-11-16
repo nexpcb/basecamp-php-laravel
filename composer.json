@@ -1,0 +1,19 @@
+{
+    "name": "nexpcb/basecamp-php-laravel",
+    "description": "Integrate with laravel for basecamp3-php package",
+    "type": "library",
+    "require": {
+        "balawxd/basecamp3-php": "^1.0@dev"
+    },
+    "license": "MIT License",
+    "autoload": {
+        "psr-4": { "BasecampPhpLaravel\\": "src/" }
+    },
+    "authors": [
+        {
+            "name": "Xiaodan Wang",
+            "email": "xiaodan.w@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

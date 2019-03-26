@@ -2,6 +2,7 @@
 
 namespace BasecampPhpLaravel;
 
+use Basecamp\Factory;
 use InvalidArgumentException;
 
 class BasecampClientService
@@ -30,14 +31,13 @@ class BasecampClientService
 
     /**
      * Create instance of GuzzleClient.
-     * 
-     * @return \GuzzleHttp\Command\Guzzle\GuzzleClient.
      */
     public function initialize()
     {
         if (empty($this->config['token'])) {
             throw new InvalidArgumentException();
         }
-        return \Basecamp\BasecampClient::factory($this->config);
-    } 
+
+        return Factory::create($this->config);
+    }
 }

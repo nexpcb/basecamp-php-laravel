@@ -2,8 +2,7 @@
 
 namespace BasecampPhpLaravel;
 
-use Basecamp\Factory;
-use InvalidArgumentException;
+use Basecamp\Factory as BasecampServiceFactory;
 
 class BasecampClientService
 {
@@ -14,10 +13,19 @@ class BasecampClientService
 
     public function __construct()
     {
-        $this->config = \Config::get('basecamp-php-laravel.identifier');
+        $this->config = config('basecamp-php-laravel.identifier');
+    }
 
-        // override auth method since basecamp3 api only works with oauth method.
-        $this->config['auth'] = 'oauth';
+    /**
+     * Create instance of GuzzleClient.
+     *
+     * @param array $config
+     *
+     * @return $this
+     */
+    public static function create($config = [])
+    {
+        return new static($config);
     }
 
     /**
@@ -30,14 +38,14 @@ class BasecampClientService
     }
 
     /**
-     * Create instance of GuzzleClient.
+     * @param $name
+     * @param array $arguments
+     *
+     * @return
      */
-    public function initialize()
+    public function __call($name, $arguments = [])
     {
-        if (empty($this->config['token'])) {
-            throw new InvalidArgumentException();
-        }
-
-        return Factory::create($this->config);
+        $service = BasecampServiceFactory::create($this->config);
+        return $service->$name($arguments);
     }
 }

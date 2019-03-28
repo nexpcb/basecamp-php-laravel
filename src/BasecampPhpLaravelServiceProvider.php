@@ -17,6 +17,10 @@ class BasecampPhpLaravelServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/config.php' => config_path('basecamp-php-laravel.php'),
         ], 'config');
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/config.php', 'basecamp-php-laravel'
+        );
     }
 
     /**
@@ -27,19 +31,8 @@ class BasecampPhpLaravelServiceProvider extends ServiceProvider
     public function register()
     {
         // Register basecamp client api
-        $this->app->singleton(\BasecampPhpLaravel\BasecampClientService::class, function ($app) {
-            return new \BasecampPhpLaravel\BasecampClientService();
+        $this->app->singleton('\BasecampPhpLaravel\BasecampClientService', function ($app) {
+            return BasecampClientService::create();
         });
     }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
-
 }
